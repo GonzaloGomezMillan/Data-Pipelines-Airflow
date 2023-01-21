@@ -6,7 +6,7 @@ class LoadFactOperator(BaseOperator):
 
     ui_color = '#F98866'
     
-    template_fields = ("s3_key",)
+#     template_fields = ("s3_key",)
     load_sql = """
         {}
         ACCESS_KEY_ID '{}'
@@ -21,7 +21,7 @@ class LoadFactOperator(BaseOperator):
                  aws_credentials = "",
                  sql_query = "",
                  ignore_headers = 1,
-                 delimiter = ","
+                 delimiter = ",",
                  *args, **kwargs):
 
         super(LoadFactOperator, self).__init__(*args, **kwargs)
