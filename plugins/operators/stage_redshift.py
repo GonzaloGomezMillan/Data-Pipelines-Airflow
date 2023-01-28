@@ -1,11 +1,14 @@
 from airflow.hooks.postgres_hook import PostgresHook
 from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
+from airflow.contrib.hooks.aws_hook import AwsHook
+from airflow.hooks.postgres_hook import PostgresHook
 
 class StageToRedshiftOperator(BaseOperator):
     ui_color = '#358140'
     
     template_fields = ("s3_key",)
+    
     copy_sql = """
         COPY {}
         FROM '{}'
@@ -55,14 +58,10 @@ class StageToRedshiftOperator(BaseOperator):
             s3_path,
             credentials.access_key,
             credentials.secret_key,
-            s3_json_path,
             self.ignore_headers,
             self.delimiter
         )
         
         redshift.run(formatted_sql)
 
-
-
-
-
+9
