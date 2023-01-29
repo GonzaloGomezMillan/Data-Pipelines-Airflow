@@ -14,8 +14,10 @@ class StageToRedshiftOperator(BaseOperator):
         FROM '{}'
         ACCESS_KEY_ID '{}'
         SECRET_ACCESS_KEY '{}'
-        DELIMITER '{}'
-    """
+        REGION 'us-west-2'
+        IGNOREHEADER {}
+        json '{}'
+        """
 
     @apply_defaults
     def __init__(self,
@@ -24,8 +26,8 @@ class StageToRedshiftOperator(BaseOperator):
                  table = "",
                  s3_bucket = "",
                  s3_key = "",
-                 s3_json_path = "",
-                 delimiter = ",",
+                 s3_json_path = "auto",
+                 ignore_headers = 1,
                  *args, **kwargs):
 
         super(StageToRedshiftOperator, self).__init__(*args, **kwargs)
@@ -35,7 +37,7 @@ class StageToRedshiftOperator(BaseOperator):
         self.s3_bucket = s3_bucket
         self.s3_key = s3_key
         self.s3_json_path = s3_json_path
-        self.delimiter = delimiter
+        self.ignore_headers = ignore_headers
 
 
     def execute(self, context):
@@ -55,7 +57,8 @@ class StageToRedshiftOperator(BaseOperator):
             s3_path,
             credentials.access_key,
             credentials.secret_key,
-            self.delimiter
+            self.ignore_headers,
+            self.s3_json_path
         )
         
         redshift.run(formatted_sql)
