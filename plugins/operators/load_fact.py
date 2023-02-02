@@ -48,4 +48,3 @@ class LoadFactOperator(BaseOperator):
         )
         
         redshift.run(sql_formatted)
-        
