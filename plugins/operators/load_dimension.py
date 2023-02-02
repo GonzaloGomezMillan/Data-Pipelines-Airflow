@@ -40,7 +40,7 @@ class LoadDimensionOperator(BaseOperator):
         
         self.log.info("Upserting data to Redshift")
         formatted_sql = LoadDimensionOperator.load_sql.format(
-            self.sql_query
+            self.sql_query,
             credentials.access_key,
             credentials.secret_access_key,
             self.ignore_headers,
