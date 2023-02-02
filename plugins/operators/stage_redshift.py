@@ -28,6 +28,9 @@ class StageToRedshiftOperator(BaseOperator):
                  s3_key = "",
                  s3_json_path = "auto",
                  ignore_headers = 1,
+                 # Define your operators params (with defaults) here
+                 # Example:
+                 # redshift_conn_id=your-connection-name
                  *args, **kwargs):
 
         super(StageToRedshiftOperator, self).__init__(*args, **kwargs)
@@ -38,7 +41,9 @@ class StageToRedshiftOperator(BaseOperator):
         self.s3_key = s3_key
         self.s3_json_path = s3_json_path
         self.ignore_headers = ignore_headers
-
+        # Map params here
+        # Example:
+        # self.conn_id = conn_id
 
     def execute(self, context):
         aws_hook = AwsHook(self.aws_credentials_id)
@@ -62,3 +67,7 @@ class StageToRedshiftOperator(BaseOperator):
         )
         
         redshift.run(formatted_sql)
+
+
+
+
