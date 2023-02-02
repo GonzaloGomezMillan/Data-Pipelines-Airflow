@@ -1,6 +1,6 @@
 class SqlQueries:
-    create_tables = ("""
-    CREATE TABLE public.artists (
+    create_tables = """
+    CREATE TABLE IF NOT EXISTS public.artists (
         artistid varchar(256) NOT NULL,
         name varchar(256),
         location varchar(256),
@@ -8,7 +8,7 @@ class SqlQueries:
         longitude numeric(18,0)
     );
 
-    CREATE TABLE public.songplays (
+    CREATE TABLE IF NOT EXISTS public.songplays (
         playid varchar(32) NOT NULL,
         start_time timestamp NOT NULL,
         userid int4 NOT NULL,
@@ -21,7 +21,7 @@ class SqlQueries:
         CONSTRAINT songplays_pkey PRIMARY KEY (playid)
     );
 
-    CREATE TABLE public.songs (
+    CREATE TABLE IF NOT EXISTS public.songs (
         songid varchar(256) NOT NULL,
         title varchar(256),
         artistid varchar(256),
@@ -30,7 +30,7 @@ class SqlQueries:
         CONSTRAINT songs_pkey PRIMARY KEY (songid)
     );
 
-    CREATE TABLE public.staging_events (
+    CREATE TABLE IF NOT EXISTS public.staging_events (
         artist varchar(256),
         auth varchar(256),
         firstname varchar(256),
@@ -51,7 +51,7 @@ class SqlQueries:
         userid int4
     );
 
-    CREATE TABLE public.staging_songs (
+    CREATE TABLE IF NOT EXISTS public.staging_songs (
         num_songs int4,
         artist_id varchar(256),
         artist_name varchar(256),
@@ -64,7 +64,7 @@ class SqlQueries:
         "year" int4
     );
 
-    CREATE TABLE public."time" (
+    CREATE TABLE IF NOT EXISTS public."time" (
         start_time timestamp NOT NULL,
         "hour" int4,
         "day" int4,
@@ -75,7 +75,7 @@ class SqlQueries:
         CONSTRAINT time_pkey PRIMARY KEY (start_time)
     );
 
-    CREATE TABLE public.users (
+    CREATE TABLE IF NOT EXISTS public.users (
         userid int4 NOT NULL,
         first_name varchar(256),
         last_name varchar(256),
@@ -83,8 +83,7 @@ class SqlQueries:
         "level" varchar(256),
         CONSTRAINT users_pkey PRIMARY KEY (userid)
     );
-    
-    """)
+"""
     
     songplay_table_insert = ("""
         SELECT
