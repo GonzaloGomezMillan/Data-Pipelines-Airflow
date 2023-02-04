@@ -9,7 +9,7 @@ class LoadFactOperator(BaseOperator):
     ui_color = '#F98866'
     
     load_sql = """
-        {}
+        INSERT INTO {}
         {}
     """
 
@@ -27,6 +27,6 @@ class LoadFactOperator(BaseOperator):
 
     def execute(self, context):
         redshift = PostgresHook(postgres_conn_id = self.redshift_conn_id)
-        self.log.info("Upserting data to Redshift")
+        self.log.info("Upserting data from staging tables into {}.".format(table)
         formatted_sql = LoadFactOperator.load_sql.format(self.table, self.sql_query)
         redshift.run(formatted_sql)
