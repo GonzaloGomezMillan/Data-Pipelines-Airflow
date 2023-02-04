@@ -87,28 +87,27 @@ class SqlQueries:
     
     songplay_table_insert = ("""
         (
-        songplay_id,
+        playid,
         start_time,
         userid,
         level,
-        song_id,
-        artist_id,
+        songid,
+        artistid,
         sessionid,
         location,
-        useragent,
-        start_time
+        user_agent
         )
     
         SELECT
-                md5(events.sessionid || events.start_time) songplay_id,
+                md5(events.sessionid || events.start_time) playid,
                 events.start_time as start_time, 
                 events.userid as userid, 
                 events.level as level, 
-                songs.song_id as song_id, 
-                songs.artist_id as artist_id, 
+                songs.song_id as songid, 
+                songs.artist_id as artistid, 
                 events.sessionid as sessionid, 
                 events.location as location, 
-                events.useragent as useragent
+                events.useragent as user_agent
                 FROM (SELECT TIMESTAMP 'epoch' + ts/1000 * interval '1 second' AS start_time, *
             FROM staging_events
             WHERE page='NextSong') events
@@ -138,16 +137,16 @@ class SqlQueries:
 
     song_table_insert = ("""
         (
-        song_id,
+        songid,
         title,
-        artist_id,
+        artistid,
         year,
         duration
         )
     
-        SELECT  distinct song_id,
+        SELECT  distinct songid,
                 title, 
-                artist_id, 
+                artistid, 
                 year, 
                 duration
         FROM staging_songs
@@ -155,18 +154,18 @@ class SqlQueries:
 
     artist_table_insert = ("""
         (
-        artist_id,
-        artist_name,
-        artist_location,
-        artist_latitude,
-        artist_longitude
+        artistid,
+        name,
+        location,
+        lattitude,
+        longitude
         )
         
-        SELECT  distinct artist_id, 
-                artist_name, 
-                artist_location, 
-                artist_latitude, 
-                artist_longitude
+        SELECT  distinct artistid, 
+                name, 
+                location, 
+                lattitude, 
+                longitude
         FROM staging_songs
     """)
 
@@ -178,7 +177,7 @@ class SqlQueries:
         week,
         month,
         year,
-        day_of_week        
+        weekday        
         )
         
         SELECT  start_time,
@@ -187,6 +186,6 @@ class SqlQueries:
                 extract(week from start_time) as week, 
                 extract(month from start_time) as month, 
                 extract(year from start_time) as year, 
-                extract(dayofweek from start_time) as day_of_week
+                extract(dayofweek from start_time) as weekday
         FROM songplays
     """)
