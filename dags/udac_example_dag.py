@@ -212,6 +212,3 @@ load_user_dimension_table >> run_quality_checks
 load_artist_dimension_table >> run_quality_checks
 load_time_dimension_table >> run_quality_checks
 run_quality_checks >> end_operator
-
-
-
