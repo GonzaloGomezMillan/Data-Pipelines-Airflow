@@ -86,7 +86,7 @@ class SqlQueries:
 """
     
     songplay_table_insert = ("""
-        INSERT INTO {} (
+        (
         songplay_id,
         start_time,
         userid,
@@ -119,7 +119,7 @@ class SqlQueries:
     """)
 
     user_table_insert = ("""
-        INSERT INTO {} (
+        (
         userid,
         firstname,
         lastname,
@@ -137,7 +137,7 @@ class SqlQueries:
     """)
 
     song_table_insert = ("""
-        INSERT INTO {} (
+        (
         song_id,
         title,
         artist_id,
@@ -154,7 +154,7 @@ class SqlQueries:
     """)
 
     artist_table_insert = ("""
-        INSERT INTO {} (
+        (
         artist_id,
         artist_name,
         artist_location,
@@ -171,7 +171,7 @@ class SqlQueries:
     """)
 
     time_table_insert = ("""
-        INSERT INTO {} (
+        (
         start_time,
         hour,
         day,
