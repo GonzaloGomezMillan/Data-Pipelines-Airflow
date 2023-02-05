@@ -79,8 +79,6 @@ class SqlQueries:
         userid int4 NOT NULL,
         first_name varchar(256),
         last_name varchar(256),
-        gender varchar(256),
-        "level" varchar(256),
         CONSTRAINT users_pkey PRIMARY KEY (userid)
     );
 """
@@ -121,16 +119,12 @@ class SqlQueries:
         (
         userid,
         firstname,
-        lastname,
-        gender,
-        level
+        lastname
         )
     
         SELECT  distinct userid,
                 firstname,
-                lastname,
-                gender,
-                level
+                lastname
         FROM staging_events
         WHERE page='NextSong'
     """)
@@ -144,9 +138,9 @@ class SqlQueries:
         duration
         )
     
-        SELECT  distinct songid,
+        SELECT  distinct song_id,
                 title, 
-                artistid, 
+                artist_id, 
                 year, 
                 duration
         FROM staging_songs
@@ -161,11 +155,11 @@ class SqlQueries:
         longitude
         )
         
-        SELECT  distinct artistid, 
-                name, 
-                location, 
-                lattitude, 
-                longitude
+        SELECT  distinct artist_id, 
+                artist_name, 
+                artist_location, 
+                artist_latitude, 
+                artist_longitude
         FROM staging_songs
     """)
 
