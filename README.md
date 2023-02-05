@@ -53,7 +53,16 @@ The project datasets can be accessed through the following links:
 ---
 
 ## **FILES DESCRIPTION**
-- **...** : ...
+- **DAGS**
+    - **sparkify_dag.py** : file which defines the DAG
+- **Custom operators**
+    - **stage_redshift.py**: custom operator which create a connection with the AWS account and copy the data from Amazon S3 to Amazon Redshift.
+    - **load_fact**: custom operator which upserts the data from the staging tables into the fact table.
+    - **load_dimension**: custom operator which upserts the data from the staging tables into the dimension tables.
+    - **data_quality**: custom operator which checks that the upserting operations have been correctly executed.
+- **SQL file**
+    - **sql_queries.py**: file in which are stored the SQL queries to create the staging, fact and dimension tables and the SQL queries to upsert the data in their corresponding tables.  
+
 
 
 ---
@@ -62,11 +71,9 @@ The project datasets can be accessed through the following links:
 
 **AWS CREDENTIALS**
 
-The AWS Access Key and the AWS Secret Access Key has to be entered in the configuration file (dl.cfg).
+It is necessary to create proper connections based on the AWS account and Redshift cluster credentials.
 
-In case of using a notebook associated to an EMR Cluster, this file is not necessary.
-
-**PYTHON FILE**
+**PYTHON FILES**
 
 ...
 
