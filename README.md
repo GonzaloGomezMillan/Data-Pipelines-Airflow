@@ -62,22 +62,24 @@ The project datasets can be accessed through the following links:
     - **data_quality**: custom operator which checks that the upserting operations have been correctly executed.
 - **SQL file**
     - **sql_queries.py**: file in which are stored the SQL queries to create the staging, fact and dimension tables and the SQL queries to upsert the data in their corresponding tables.  
-
-
-
 ---
 
 ## **HOW TO RUN THE SCRIPTS?**
 
-**AWS CREDENTIALS**
+In this case is necessary to access Apache Airflow and toggle the trigger button to start the DAG execution.
 
-It is necessary to create proper connections based on the AWS account and Redshift cluster credentials.
+![](images/airflow_1.png)
 
-**PYTHON FILES**
+You can observe, whether each step is being currently executed both by using the "Graph View" and by using the "Tree View". 
+ 
+***GRAPH VIEW***
+![](images/airflow_graph_view.png)
 
+***TREE VIEW***
+![](images/airflow_tree_view.png)
 ...
 
 ---
 ## **LICENSING, AUTHORS, ACKNOWLEDGEMENTS, ETC.**
-- **Author**: The author of this analysis is Gonzalo Gomez-Millan
-- **Acknowledgment**: Also noteworthy is the work of **Udacity** in promoting the performance of this analysis as one of the projects in order to pass the Data Engineering Nanodegree Program.
+- **Author**: The author of this project is Gonzalo Gomez-Millan del Villar
+- **Acknowledgment**: Also noteworthy is the work of **Udacity** by promoting  this analysis as one of the projects of the Data Engineering Nanodegree Program.
