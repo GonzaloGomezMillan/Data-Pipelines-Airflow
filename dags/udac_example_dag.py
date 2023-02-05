@@ -102,7 +102,7 @@ default_args = {
     'owner': 'udacity',
     'start_date': datetime(2019, 1, 12),
     'retries': 3,
-    'retry_delay':timedelta(minutes=5),
+    'retry_delay':timedelta(minutes=1),
     'depends_on_past':False,
     'catchup_by_default':False,
     'email_on_retry': False
