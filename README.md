@@ -9,7 +9,7 @@ The source data resides in S3 and needs to be processed in Sparkify's data wareh
 ---
 
 ## **APACHE AIRFLOW PIPELINE**
-![](DAG_schema.png)
+![](images/DAG_schema.png)
 
 - **Begin_execution**: dummy operation to start the DAG.
 - **Create_tables**: in this step, the staging tables and the table of the data warehouse are defined and created.
@@ -21,6 +21,7 @@ The source data resides in S3 and needs to be processed in Sparkify's data wareh
 - **Load_song_dim_table**: in this operation, the data is upserted from the staging tables into the dimension table "song".
 - **Load_time_dim_table**: in this operation, the data is upserted from the staging tables into the dimension table "time".
 - **Run_data_quality_checks**: this operation checks that the upserting operations have been correctly executed.
+- **Stop_execution**: dummy operation to finalize the DAG.
 ---
 
 ## **INPUT DATA**
