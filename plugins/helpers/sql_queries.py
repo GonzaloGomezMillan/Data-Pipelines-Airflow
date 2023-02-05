@@ -79,6 +79,8 @@ class SqlQueries:
         userid int4 NOT NULL,
         first_name varchar(256),
         last_name varchar(256),
+        gender varchar(256),
+        "level" varchar(256),
         CONSTRAINT users_pkey PRIMARY KEY (userid)
     );
 """
@@ -118,16 +120,21 @@ class SqlQueries:
     user_table_insert = ("""
         (
         userid,
-        firstname,
-        lastname
+        first_name,
+        last_name,
+        gender,
+        level
         )
     
         SELECT  distinct userid,
                 firstname,
-                lastname
+                lastname,
+                gender,
+                level
         FROM staging_events
         WHERE page='NextSong'
     """)
+
 
     song_table_insert = ("""
         (
@@ -162,7 +169,7 @@ class SqlQueries:
                 artist_longitude
         FROM staging_songs
     """)
-
+    
     time_table_insert = ("""
         (
         start_time,
